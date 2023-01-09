@@ -105,6 +105,11 @@ var selectedCharactersLists = [];
 // Function to prompt user for password options
 function getPasswordOptions() {
 lengthOfPassword = prompt("How many characters would you like? Please choose between 10 to 64.");
+// Validate length of password which should be between 10 and 64
+while(lengthOfPassword < 10 || lengthOfPassword > 64){
+  alert("You have entered an invalid option. Please choose between 10 to 64.")
+  lengthOfPassword = prompt("How many characters would you like? Please choose between 10 to 64.");
+}
 IsAddedLowerCase = confirm("Do you want to add lowercase characters?");
 IsAddedUpperCase = confirm("Do you want to add uppercase characters?");
 IsAddedNumeric = confirm("Do you want to add numeric characters?");
