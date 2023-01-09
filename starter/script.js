@@ -122,6 +122,7 @@ while(IsAddedLowerCase === false && IsAddedUpperCase === false && IsAddedNumeric
   IsAddedNumeric = confirm("Do you want to add numeric characters?");
   IsAddedSpecial = confirm("Do you want to add special characters ie $@%&*?");
 }
+alert("Please click the Generate Password button to display password.")
 }
 
 // Function for getting a random element from an array
