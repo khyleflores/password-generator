@@ -105,7 +105,7 @@ var selectedCharactersLists = [];
 // Function to prompt user for password options
 function getPasswordOptions() {
 lengthOfPassword = prompt("How many characters would you like? Please choose between 10 to 64.");
-// Validate length of password which should be between 10 and 64
+// Validate length of password should be between 10 and 64
 while(lengthOfPassword < 10 || lengthOfPassword > 64){
   alert("You have entered an invalid option. Please choose between 10 to 64.")
   lengthOfPassword = prompt("How many characters would you like? Please choose between 10 to 64.");
@@ -114,6 +114,14 @@ IsAddedLowerCase = confirm("Do you want to add lowercase characters?");
 IsAddedUpperCase = confirm("Do you want to add uppercase characters?");
 IsAddedNumeric = confirm("Do you want to add numeric characters?");
 IsAddedSpecial = confirm("Do you want to add special characters ie $@%&*?");
+// Validate that at least one character type is selected
+while(IsAddedLowerCase === false && IsAddedUpperCase === false && IsAddedNumeric === false && IsAddedSpecial === false){
+  alert("You have not picked any of the options.\nPlease pick at least one character type.")
+  IsAddedLowerCase = confirm("Do you want to add lowercase characters?");
+  IsAddedUpperCase = confirm("Do you want to add uppercase characters?");
+  IsAddedNumeric = confirm("Do you want to add numeric characters?");
+  IsAddedSpecial = confirm("Do you want to add special characters ie $@%&*?");
+}
 }
 
 // Function for getting a random element from an array
