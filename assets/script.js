@@ -91,10 +91,10 @@ var upperCasedCharacters = [
 //variable to store how many characters user wants
 var lengthOfPassword = 0;
 //variables to store user's options
-var IsAddedLowerCase = true;
-var IsAddedUpperCase = true;
-var IsAddedNumeric = true;
-var IsAddedSpecial = true;
+var IsConfirmedLowerCase = true;
+var IsConfirmedUpperCase = true;
+var IsConfirmedNumeric = true;
+var IsConfirmedSpecial = true;
 //variable to store randomise characters from GetRandom function
 var randomCharacters = "";
 // New array for the selected characters from users
@@ -104,25 +104,27 @@ var selectedCharactersLists = [];
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-lengthOfPassword = prompt("How many characters would you like? Please choose between 10 to 64.");
-// Validate length of password should be between 10 and 64
-while(lengthOfPassword < 10 || lengthOfPassword > 64){
-  alert("You have entered an invalid option. Please choose between 10 to 64.")
   lengthOfPassword = prompt("How many characters would you like? Please choose between 10 to 64.");
-}
-IsAddedLowerCase = confirm("Do you want to add lowercase characters?");
-IsAddedUpperCase = confirm("Do you want to add uppercase characters?");
-IsAddedNumeric = confirm("Do you want to add numeric characters?");
-IsAddedSpecial = confirm("Do you want to add special characters ie $@%&*?");
-// Validate that at least one character type is selected
-while(IsAddedLowerCase === false && IsAddedUpperCase === false && IsAddedNumeric === false && IsAddedSpecial === false){
-  alert("You have not picked any of the options.\nPlease pick at least one character type.")
-  IsAddedLowerCase = confirm("Do you want to add lowercase characters?");
-  IsAddedUpperCase = confirm("Do you want to add uppercase characters?");
-  IsAddedNumeric = confirm("Do you want to add numeric characters?");
-  IsAddedSpecial = confirm("Do you want to add special characters ie $@%&*?");
-}
-alert("Please click the Generate Password button to display password.")
+  //Make sure that length of password is a number and does not contain any letters ie "ten", "10T"
+  lengthOfPassword = parseInt(lengthOfPassword);
+  // Validate length of password should be between 10 and 64, also validate that if length of password is not a number
+  while(lengthOfPassword < 10 || lengthOfPassword > 64 || isNaN(lengthOfPassword)){
+    alert("You have entered an invalid option. Please choose between 10 to 64.")
+    lengthOfPassword = prompt("How many characters would you like? Please choose between 10 to 64.");
+  }
+  IsConfirmedLowerCase = confirm("Do you want to add lowercase characters?");
+  IsConfirmedUpperCase = confirm("Do you want to add uppercase characters?");
+  IsConfirmedNumeric = confirm("Do you want to add numeric characters?");
+  IsConfirmedSpecial = confirm("Do you want to add special characters ie $@%&*?");
+  // Validate that at least one character type is selected
+  while(IsConfirmedLowerCase === false && IsConfirmedUpperCase === false && IsConfirmedNumeric === false && IsConfirmedSpecial === false){
+    alert("You have not picked any of the options.\nPlease pick at least one character type.")
+    IsConfirmedLowerCase = confirm("Do you want to add lowercase characters?");
+    IsConfirmedUpperCase = confirm("Do you want to add uppercase characters?");
+    IsConfirmedNumeric = confirm("Do you want to add numeric characters?");
+    IsConfirmedSpecial = confirm("Do you want to add special characters ie $@%&*?");
+  }
+  alert("Please click the Generate Password button to display password.")
 }
 
 // Function for getting a random element from an array
@@ -133,16 +135,16 @@ function getRandom(list) {
 // Function to generate password with user input
 function generatePassword() {
   //If statements to add the characters lists on an array when selected by the user
-  if (IsAddedLowerCase){
+  if (IsConfirmedLowerCase){
     selectedCharactersLists = selectedCharactersLists.concat(lowerCasedCharacters);
   }
-  if (IsAddedUpperCase){
+  if (IsConfirmedUpperCase){
     selectedCharactersLists = selectedCharactersLists.concat(upperCasedCharacters);
   }
-  if (IsAddedNumeric){
+  if (IsConfirmedNumeric){
     selectedCharactersLists = selectedCharactersLists.concat(numericCharacters);
   }
-  if (IsAddedSpecial){
+  if (IsConfirmedSpecial){
     selectedCharactersLists = selectedCharactersLists.concat(specialCharacters);
   }
 
